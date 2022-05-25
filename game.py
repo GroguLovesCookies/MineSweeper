@@ -1,22 +1,36 @@
-import pygame
+import main
+from pygame_utils import *
 
 
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 650
 
 
-pygame.init()
+pg.init()
 
-screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-pygame.display.set_caption("MineSweeper")
+screen = pg.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+pg.display.set_caption("MineSweeper")
+
+tile_layer = [[((i+j) % 2) + 1 for i in range(main.WIDTH)] for j in range(main.HEIGHT)]
+
+
+tile_images = [None]
+tile_images.extend(load_images("img/tiles", ("png", "jpg")))
+print(tile_images)
 
 
 running = True
 while running:
 
-    for e in pygame.event.get():
-        if e.type == pygame.QUIT:
+    screen.fill((100, 100, 100))
+
+    draw_list(screen, tile_layer, tile_images, (0, 0), (32, 32), [0])
+
+    pg.display.flip()
+
+    for e in pg.event.get():
+        if e.type == pg.QUIT:
             running = False
 
 
-pygame.quit()
+pg.quit()

@@ -43,14 +43,3 @@ def count_neighbours(board_to_fill, x, y):
         except IndexError:
             continue
     return num_neighbours
-
-
-populate_board(board, MINE_NUM)
-fill_numbers(board)
-for row in board:
-    for item in row:
-        if item == 9:
-            print("M", end=" ")
-        else:
-            print(item, end=" ")
-    print("")
