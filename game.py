@@ -16,7 +16,9 @@ tile_layer = [[((i+j) % 2) + 1 for i in range(main.WIDTH)] for j in range(main.H
 
 tile_images = [None]
 tile_images.extend(load_images("img/tiles", ("png", "jpg")))
-print(tile_images)
+
+
+item_images = scale_list(load_images("img/items", ("png", "jpg")), (32, 32))
 
 
 running = True
@@ -24,6 +26,7 @@ while running:
 
     screen.fill((100, 100, 100))
 
+    draw_list(screen, main.board, item_images, (0, 0), (32, 32))
     draw_list(screen, tile_layer, tile_images, (0, 0), (32, 32), [0])
 
     pg.display.flip()

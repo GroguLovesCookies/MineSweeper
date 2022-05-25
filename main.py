@@ -43,3 +43,7 @@ def count_neighbours(board_to_fill, x, y):
         except IndexError:
             continue
     return num_neighbours
+
+
+populate_board(board, MINE_NUM)
+fill_numbers(board)

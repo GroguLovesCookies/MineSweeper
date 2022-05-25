@@ -33,3 +33,10 @@ def load_images(dir_path, supported_types=("png", "jpg"), keyed=False):
             else:
                 loaded.append(pg.image.load(path))
     return loaded
+
+
+def scale_list(img_list, target_size):
+    out = []
+    for img in img_list:
+        out.append(pg.transform.scale(img, target_size))
+    return out
