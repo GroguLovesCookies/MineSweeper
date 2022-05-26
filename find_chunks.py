@@ -35,6 +35,17 @@ def find_chunks(board, chunk_num):
 def raw_chunks_to_board(raw_chunks, w, h):
     board = [[0 for _ in range(w)] for _ in range(h)]
     for i, chunk in enumerate(raw_chunks):
-        for coord in chunk:
-            board[coord[1]][coord[0]] = i+1
+        paint_chunk_with_color(board, i+1, chunk)
     return board
+
+
+def paint_chunk_with_color(board, color, chunk):
+    for coord in chunk:
+        board[coord[1]][coord[0]] = color
+
+
+def get_chunk_with_coord(chunks, coord):
+    for chunk in chunks:
+        if coord in chunk:
+            return chunk
+    return None

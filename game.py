@@ -12,8 +12,11 @@ pg.init()
 screen = pg.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pg.display.set_caption("MineSweeper")
 
+
 tile_layer = [[((i+j) % 2) + 1 for i in range(main.WIDTH)] for j in range(main.HEIGHT)]
-debug_map = fc.raw_chunks_to_board(fc.find_chunks(main.board, 0), main.WIDTH, main.HEIGHT)
+
+raw_chunks = fc.find_chunks(main.board, 0)
+debug_map = fc.raw_chunks_to_board(raw_chunks, main.WIDTH, main.HEIGHT)
 
 
 tile_images = [None]
@@ -34,7 +37,20 @@ while running:
     draw_list(screen, main.board, item_images, (0, 0), (32, 32))
     if debug:
         draw_list(screen, debug_map, debug_tile_images, (0, 0), (32, 32), [0])
-    # draw_list(screen, tile_layer, tile_images, (0, 0), (32, 32), [0])
+    draw_list(screen, tile_layer, tile_images, (0, 0), (32, 32), [0])
+
+    pressed = pg.mouse.get_pressed()
+    if pressed[0]:
+        pos = pg.mouse.get_pos()
+        grid_pos_x = pos[0]//32
+        grid_pos_y = pos[1]//32
+        if 0 <= grid_pos_x < main.WIDTH and 0 <= grid_pos_y < main.HEIGHT:
+            if tile_layer[grid_pos_y][grid_pos_x] != 0:
+                if main.board[grid_pos_y][grid_pos_x] != 0:
+                    tile_layer[grid_pos_y][grid_pos_x] = 0
+                else:
+                    chunk = fc.get_chunk_with_coord(raw_chunks, (grid_pos_x, grid_pos_y))
+                    fc.paint_chunk_with_color(tile_layer, 0, chunk)
 
     pg.display.flip()
 
