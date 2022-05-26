@@ -49,3 +49,20 @@ def get_chunk_with_coord(chunks, coord):
         if coord in chunk:
             return chunk
     return None
+
+
+def expand_chunk(board, chunk, ignore_in_expansion=tuple()):
+    new_chunk = chunk[:]
+    for coord in chunk:
+        cur_x = coord[0]
+        cur_y = coord[1]
+        for offset in main.OFFSETS:
+            new_x = cur_x + offset[0]
+            new_y = cur_y + offset[1]
+            if 0 <= new_x < len(board[0]) and 0 <= new_y < len(board):
+                if (new_x, new_y) in new_chunk:
+                    continue
+                if board[new_y][new_x] in ignore_in_expansion:
+                    continue
+                new_chunk.append((new_x, new_y))
+    return new_chunk
