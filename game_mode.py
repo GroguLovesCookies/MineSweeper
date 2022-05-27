@@ -1,5 +1,6 @@
 import pygame as pg
 import find_chunks as fc
+from settings import *
 
 
 class GameMode:
@@ -111,3 +112,20 @@ class PlayGameMode(GameMode):
         self.suspect_layer = suspect_layer
 
         return self.debug, self.flags_left, self.suspect_layer
+
+
+class LoseMode(GameMode):
+    def __init__(self, screen, draw_list, board, item_images, font):
+        self.screen = screen
+        self.draw_list = draw_list
+        self.board = board
+        self.item_images = item_images
+        self.font = font
+
+    def update(self, *args):
+        self.screen.fill((100, 100, 100))
+        self.draw_list(self.screen, self.board, self.item_images, (0, 0), (32, 32))
+
+        label = self.font.render("You Lost!", 0, (255, 255, 255))
+        text_rect = label.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2))
+        self.screen.blit(label, text_rect)
