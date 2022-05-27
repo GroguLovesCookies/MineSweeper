@@ -45,5 +45,22 @@ def count_neighbours(board_to_fill, x, y):
     return num_neighbours
 
 
+def check_win(mine_map, flags):
+    extra_flags = []
+    similarities = []
+    missed_mines = []
+    for i, mine_row, flag_row in zip(range(len(mine_map)), mine_map, flags):
+        for j, mine_item, flag_item in zip(range(len(mine_row)), mine_row, flag_row):
+            if flag_item == 1:
+                if mine_item == 9:
+                    similarities.append((j, i))
+                else:
+                    extra_flags.append((j, i))
+            else:
+                if mine_item == 9:
+                    missed_mines.append((j, i))
+    return extra_flags, similarities, missed_mines
+
+
 populate_board(board, MINE_NUM)
 fill_numbers(board)
