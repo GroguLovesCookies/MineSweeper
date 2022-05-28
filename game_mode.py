@@ -134,10 +134,12 @@ class FinishMode(GameMode):
         self.draw_list(self.screen, self.board, self.item_images, (0, 0), (32, 32))
 
         if len(self.extra_flags) != 0 or len(self.missed_mines) != 0:
-            label = self.font.render("You Lost!", 1, (255, 255, 255))
+            label = self.font.render("You Lost! Press R to Play Again!", 1, (255, 255, 255))
         else:
-            label = self.font.render("You Won!", 1, (255, 255, 255))
+            label = self.font.render("You Won! Press R to Play Again!", 1, (255, 255, 255))
+
         text_rect = label.get_rect()
         text_rect.bottom = SCREEN_HEIGHT
         text_rect.center = (SCREEN_WIDTH/2, text_rect.center[1])
+
         self.screen.blit(label, text_rect)

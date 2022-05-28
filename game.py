@@ -4,7 +4,6 @@ from game_mode import *
 from pygame_utils import *
 from settings import *
 
-# TODO: Restart Game
 # TODO: Giving Option for size
 # TODO: Add Timer
 # TODO: Add Flags/Mines
@@ -51,7 +50,7 @@ def play_game():
     down_tick = 0
     clock = pg.time.Clock()
     flags_left = main.MINE_NUM
-    roboto_font = pg.font.Font("fonts/Roboto-Thin.ttf", 50)
+    roboto_font = pg.font.Font("fonts/Roboto-Thin.ttf", 28)
 
     play_mode = PlayGameMode(screen, draw_list, main, item_images, debug, debug_map, debug_tile_images, tile_layer,
                              tile_images, suspect_layer, question_mark_images, raw_chunks, down_tick, flags_left)
@@ -73,14 +72,16 @@ def play_game():
             if e.type == pg.QUIT:
                 running = False
             else:
-                if e.type == pg.KEYDOWN:
+                if e.type == pg.KEYDOWN and cur_mode == freeze_mode:
                     if e.key == pg.K_r:
                         return "r"
                 if cur_mode == play_mode:
                     debug, flags_left, suspect_layer = cur_mode.check_events(e)
                 else:
                     cur_mode.check_events(e)
+
         clock.tick(FPS)
+
         if down_tick != 0 and cur_mode == play_mode:
             extra_flags, similarities, missed_mines = main.check_win(main.board, suspect_layer)
             screen, draw_list, main, item_images, debug, debug_map, debug_tile_images, tile_layer, \
