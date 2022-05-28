@@ -50,8 +50,10 @@ class PlayGameMode(GameMode):
         self.frame += 1
 
         time = self.frame//FPS
+        minutes = time//60
+        seconds = time % 60
 
-        label = self.font.render(str(time), 1, (255, 255, 255))
+        label = self.font.render(str(minutes).rjust(2, "0") + ":" + str(seconds).rjust(2, "0"), 1, (255, 255, 255))
         rect = label.get_rect()
         rect.bottomright = (SCREEN_WIDTH, SCREEN_HEIGHT)
         screen.blit(label, rect)
