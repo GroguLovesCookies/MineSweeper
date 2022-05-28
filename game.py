@@ -29,7 +29,7 @@ question_mark_images = [None]
 question_mark_images.extend(scale_list(load_images("img/question_mark"), (32, 32)))
 
 running = True
-debug = True
+debug = False
 frame_timer = 120
 down_tick = 0
 clock = pg.time.Clock()
@@ -39,6 +39,7 @@ roboto_font = pg.font.Font("fonts/Roboto-Thin.ttf", 100)
 play_mode = PlayGameMode(screen, draw_list, main, item_images, debug, debug_map, debug_tile_images, tile_layer,
                          tile_images, suspect_layer, question_mark_images, raw_chunks, down_tick, flags_left)
 freeze_mode = LoseMode(screen, draw_list, main.board, item_images, roboto_font)
+win_mode = WinMode(screen, draw_list, main.board, item_images, roboto_font)
 
 cur_mode = play_mode
 while running:
@@ -47,6 +48,8 @@ while running:
          tile_images, suspect_layer, question_mark_images, raw_chunks, down_tick = cur_mode.update()
     else:
         cur_mode.update()
+    flags_left = main.MINE_NUM - main.count_items(suspect_layer, 1)
+    print(flags_left, main.MINE_NUM)
 
     pg.display.flip()
 
@@ -76,5 +79,9 @@ while running:
             freeze_mode.missed_mines = missed_mines
             freeze_mode.correct = similarities
             cur_mode = freeze_mode
+        else:
+            screen, draw_list, main, item_images, debug, debug_map, debug_tile_images, tile_layer, \
+             tile_images, suspect_layer, question_mark_images, raw_chunks, down_tick = cur_mode.update()
+            cur_mode = win_mode
 
 pg.quit()

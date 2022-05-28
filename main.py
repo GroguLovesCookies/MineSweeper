@@ -17,6 +17,9 @@ def populate_board(board_to_populate, mine_number):
     for _ in range(mine_number):
         x = random.randint(0, len(board_to_populate[0])-1)
         y = random.randint(0, len(board_to_populate)-1)
+        while board_to_populate[y][x] == 9:
+            x = random.randint(0, len(board_to_populate[0])-1)
+            y = random.randint(0, len(board_to_populate)-1)
         board_to_populate[y][x] = 9
 
 
@@ -60,6 +63,15 @@ def check_win(mine_map, flags):
                 if mine_item == 9:
                     missed_mines.append((j, i))
     return extra_flags, similarities, missed_mines
+
+
+def count_items(array, num=0):
+    count = 0
+    for row in array:
+        for item in row:
+            if item == num:
+                count += 1
+    return count
 
 
 populate_board(board, MINE_NUM)
