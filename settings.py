@@ -1,3 +1,6 @@
-SCREEN_WIDTH = 800
+import main
+
+
+SCREEN_WIDTH = (len(main.board[0])) * 32
+SCREEN_HEIGHT = (len(main.board)) * 32
 FPS = 60
-SCREEN_HEIGHT = 650

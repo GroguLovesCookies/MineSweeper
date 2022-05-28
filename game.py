@@ -4,6 +4,15 @@ from game_mode import *
 from pygame_utils import *
 from settings import *
 
+# TODO: Fix debugging crash
+# TODO: You Lost/Won - improve contrast
+# TODO: Restart Game
+# TODO: Giving Option for size
+# TODO: Add Timer
+# TODO: Add Flags/Mines
+
+# Good to have: Maintaining stats
+
 
 pg.init()
 
@@ -38,8 +47,7 @@ roboto_font = pg.font.Font("fonts/Roboto-Thin.ttf", 100)
 
 play_mode = PlayGameMode(screen, draw_list, main, item_images, debug, debug_map, debug_tile_images, tile_layer,
                          tile_images, suspect_layer, question_mark_images, raw_chunks, down_tick, flags_left)
-freeze_mode = LoseMode(screen, draw_list, main.board, item_images, roboto_font)
-win_mode = WinMode(screen, draw_list, main.board, item_images, roboto_font)
+freeze_mode = FinishMode(screen, draw_list, main.board, item_images, roboto_font)
 
 cur_mode = play_mode
 while running:
@@ -72,16 +80,11 @@ while running:
         cur_mode = freeze_mode
     if flags_left == 0 and cur_mode == play_mode:
         extra_flags, similarities, missed_mines = main.check_win(main.board, suspect_layer)
-        if len(extra_flags) != 0 or len(missed_mines) != 0:
-            screen, draw_list, main, item_images, debug, debug_map, debug_tile_images, tile_layer, \
-             tile_images, suspect_layer, question_mark_images, raw_chunks, down_tick = cur_mode.update()
-            freeze_mode.extra_flags = extra_flags
-            freeze_mode.missed_mines = missed_mines
-            freeze_mode.correct = similarities
-            cur_mode = freeze_mode
-        else:
-            screen, draw_list, main, item_images, debug, debug_map, debug_tile_images, tile_layer, \
-             tile_images, suspect_layer, question_mark_images, raw_chunks, down_tick = cur_mode.update()
-            cur_mode = win_mode
+        screen, draw_list, main, item_images, debug, debug_map, debug_tile_images, tile_layer, \
+         tile_images, suspect_layer, question_mark_images, raw_chunks, down_tick = cur_mode.update()
+        freeze_mode.extra_flags = extra_flags
+        freeze_mode.missed_mines = missed_mines
+        freeze_mode.correct = similarities
+        cur_mode = freeze_mode
 
 pg.quit()

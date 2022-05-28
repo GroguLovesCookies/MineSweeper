@@ -114,7 +114,7 @@ class PlayGameMode(GameMode):
         return self.debug, self.flags_left, self.suspect_layer
 
 
-class LoseMode(GameMode):
+class FinishMode(GameMode):
     def __init__(self, screen, draw_list, board, item_images, font):
         self.screen = screen
         self.draw_list = draw_list
@@ -133,23 +133,9 @@ class LoseMode(GameMode):
             self.board[item[1]][item[0]] = 11
         self.draw_list(self.screen, self.board, self.item_images, (0, 0), (32, 32))
 
-        label = self.font.render("You Lost!", 0, (255, 255, 255))
-        text_rect = label.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2))
-        self.screen.blit(label, text_rect)
-
-
-class WinMode(GameMode):
-    def __init__(self, screen, draw_list, board, item_images, font):
-        self.screen = screen
-        self.draw_list = draw_list
-        self.board = board
-        self.item_images = item_images
-        self.font = font
-
-    def update(self, *args):
-        self.screen.fill((100, 100, 100))
-        self.draw_list(self.screen, self.board, self.item_images, (0, 0), (32, 32))
-
-        label = self.font.render("You Won!", 0, (255, 255, 255))
+        if len(self.extra_flags) != 0 or len(self.missed_mines) != 0:
+            label = self.font.render("You Lost!", 0, (255, 255, 255))
+        else:
+            label = self.font.render("You Won!", 0, (255, 255, 255))
         text_rect = label.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2))
         self.screen.blit(label, text_rect)
