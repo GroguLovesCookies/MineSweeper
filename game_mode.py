@@ -13,7 +13,7 @@ class GameMode:
 
 class PlayGameMode(GameMode):
     def __init__(self, screen, draw_list, main, item_images, debug, debug_map, debug_tile_images, tile_layer,
-                 tile_images, suspect_layer, question_mark_images, raw_chunks, down_tick, flags_left):
+                 tile_images, suspect_layer, question_mark_images, raw_chunks, down_tick, flags_left, font):
         self.screen = screen
         self.draw_list = draw_list
         self.main = main
@@ -28,6 +28,8 @@ class PlayGameMode(GameMode):
         self.raw_chunks = raw_chunks
         self.down_tick = down_tick
         self.flags_left = flags_left
+        self.font = font
+        self.frame = 0
 
     def update(self, *args):
         screen = self.screen
@@ -45,6 +47,14 @@ class PlayGameMode(GameMode):
         down_tick = self.down_tick
 
         screen.fill((100, 100, 100))
+        self.frame += 1
+
+        time = self.frame//FPS
+
+        label = self.font.render(str(time), 1, (255, 255, 255))
+        rect = label.get_rect()
+        rect.bottomright = (SCREEN_WIDTH, SCREEN_HEIGHT)
+        screen.blit(label, rect)
 
         draw_list(screen, main.board, item_images, (0, 0), (32, 32))
         if debug:

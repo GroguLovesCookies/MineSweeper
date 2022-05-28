@@ -4,11 +4,11 @@ from game_mode import *
 from pygame_utils import *
 from settings import *
 
-# TODO: Giving Option for size
 # TODO: Add Timer
 # TODO: Add Flags/Mines
 # TODO: Fix debugging crash
 # TODO: Improve Graphics
+# TODO: Giving Option for size
 
 # Good to have: Maintaining stats
 
@@ -53,7 +53,8 @@ def play_game():
     roboto_font = pg.font.Font("fonts/Roboto-Thin.ttf", 28)
 
     play_mode = PlayGameMode(screen, draw_list, main, item_images, debug, debug_map, debug_tile_images, tile_layer,
-                             tile_images, suspect_layer, question_mark_images, raw_chunks, down_tick, flags_left)
+                             tile_images, suspect_layer, question_mark_images, raw_chunks, down_tick, flags_left,
+                             roboto_font)
     freeze_mode = FinishMode(screen, draw_list, main.board, item_images, roboto_font)
 
     cur_mode = play_mode
