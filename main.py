@@ -14,6 +14,7 @@ board = [[0 for _ in range(WIDTH)] for _ in range(HEIGHT)]
 
 def populate_board(board_to_populate, mine_number):
     """A function to pick mines randomly"""
+    board_to_populate = [[0 for _ in range(WIDTH)] for _ in range(HEIGHT)]
     for _ in range(mine_number):
         x = random.randint(0, len(board_to_populate[0])-1)
         y = random.randint(0, len(board_to_populate)-1)
@@ -21,6 +22,7 @@ def populate_board(board_to_populate, mine_number):
             x = random.randint(0, len(board_to_populate[0])-1)
             y = random.randint(0, len(board_to_populate)-1)
         board_to_populate[y][x] = 9
+    return board_to_populate
 
 
 def fill_numbers(board_to_fill):
