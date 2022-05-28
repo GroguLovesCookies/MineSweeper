@@ -4,12 +4,12 @@ from game_mode import *
 from pygame_utils import *
 from settings import *
 
-# TODO: Fix debugging crash
-# TODO: You Lost/Won - improve contrast
 # TODO: Restart Game
 # TODO: Giving Option for size
 # TODO: Add Timer
 # TODO: Add Flags/Mines
+# TODO: Fix debugging crash
+# TODO: Improve Graphics
 
 # Good to have: Maintaining stats
 
@@ -43,7 +43,7 @@ frame_timer = 120
 down_tick = 0
 clock = pg.time.Clock()
 flags_left = main.MINE_NUM
-roboto_font = pg.font.Font("fonts/Roboto-Thin.ttf", 100)
+roboto_font = pg.font.Font("fonts/Roboto-Thin.ttf", 50)
 
 play_mode = PlayGameMode(screen, draw_list, main, item_images, debug, debug_map, debug_tile_images, tile_layer,
                          tile_images, suspect_layer, question_mark_images, raw_chunks, down_tick, flags_left)
