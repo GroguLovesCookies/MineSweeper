@@ -1,6 +1,6 @@
 import main
 
 
-SCREEN_WIDTH = (len(main.board[0])) * 32
-SCREEN_HEIGHT = (len(main.board)+1) * 32
+SCREEN_WIDTH = 352
+SCREEN_HEIGHT = 384
 FPS = 60

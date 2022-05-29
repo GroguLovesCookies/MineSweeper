@@ -2,8 +2,8 @@ import random
 
 
 # Constants
-WIDTH = int(input("Enter Width: "))
-HEIGHT = int(input("Enter Height: "))
+WIDTH = 0
+HEIGHT = 0
 MINE_NUM = int(0.1 * int(WIDTH*HEIGHT)) + random.randint(-1, 1)
 OFFSETS = [(0, -1), (1, -1), (1, 0), (1, 1), (0, 1), (-1, 1), (-1, 0), (-1, -1)]
 
@@ -74,7 +74,3 @@ def count_items(array, num=0):
             if item == num:
                 count += 1
     return count
-
-
-populate_board(board, MINE_NUM)
-fill_numbers(board)
