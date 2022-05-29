@@ -75,10 +75,10 @@ class PlayGameMode(GameMode):
             grid_pos_x = pos[0] // 32
             grid_pos_y = pos[1] // 32
             if 0 <= grid_pos_x < main.WIDTH and 0 <= grid_pos_y < main.HEIGHT:
-                if tile_layer[grid_pos_y][grid_pos_x] != 0:
+                if tile_layer[grid_pos_y][grid_pos_x] != 0 and suspect_layer[grid_pos_y][grid_pos_x] == 0:
                     if main.board[grid_pos_y][grid_pos_x] == 0:
                         chunk = fc.get_chunk_with_coord(raw_chunks, (grid_pos_x, grid_pos_y))
-                        fc.paint_chunk_with_color(tile_layer, 0, chunk)
+                        fc.paint_chunk_with_color(tile_layer, 0, chunk, suspect_layer, [1])
                     elif main.board[grid_pos_y][grid_pos_x] == 9:
                         tile_layer[grid_pos_y][grid_pos_x] = 0
                         down_tick = 1

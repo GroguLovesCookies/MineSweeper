@@ -39,9 +39,12 @@ def raw_chunks_to_board(raw_chunks, w, h):
     return board
 
 
-def paint_chunk_with_color(board, color, chunk):
+def paint_chunk_with_color(board, color, chunk, ignore_board=None, ignore_items=[]):
+    if ignore_board is None:
+        ignore_board = board
     for coord in chunk:
-        board[coord[1]][coord[0]] = color
+        if ignore_board[coord[1]][coord[0]] not in ignore_items:
+            board[coord[1]][coord[0]] = color
 
 
 def get_chunk_with_coord(chunks, coord):
