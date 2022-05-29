@@ -9,14 +9,14 @@ def get_files(path, ending=None):
             f.endswith("." + ending)]
 
 
-def draw_list(screen, list_to_draw, sprite_list, origin_point, sprite_dim, skip_items=[]):
+def draw_list(screen, list_to_draw, sprite_list, origin_point, sprite_dim, skip_items=[], modulo=1000000):
     for y, row in enumerate(list_to_draw):
         for x, item in enumerate(row):
             if item in skip_items:
                 continue
             pos_x = origin_point[0] + sprite_dim[0]*x
             pos_y = origin_point[1] + sprite_dim[1]*y
-            sprite_to_use = sprite_list[item]
+            sprite_to_use = sprite_list[((item % modulo) + 1) if item > modulo else item]
             screen.blit(sprite_to_use, (pos_x, pos_y))
 
 

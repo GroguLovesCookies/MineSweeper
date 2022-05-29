@@ -65,7 +65,7 @@ class PlayGameMode(GameMode):
 
         draw_list(screen, main.board, item_images, (0, 0), (32, 32))
         if debug:
-            draw_list(screen, debug_map, debug_tile_images, (0, 0), (32, 32), [0])
+            draw_list(screen, debug_map, debug_tile_images, (0, 0), (32, 32), [0], 4)
         draw_list(screen, tile_layer, tile_images, (0, 0), (32, 32), [0])
         draw_list(screen, suspect_layer, question_mark_images, (0, 0), (32, 32), [0])
 
