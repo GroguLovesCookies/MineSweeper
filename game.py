@@ -47,9 +47,9 @@ def play_game():
     clock = pg.time.Clock()
     flags_left = main.MINE_NUM
 
-    roboto_font = pg.font.Font("fonts/Roboto-Thin.ttf", 28)
-    roboto_small = pg.font.Font("fonts/Roboto-Thin.ttf", 20)
-    roboto_middle = pg.font.Font("fonts/Roboto-Thin.ttf", 23)
+    roboto_font = pg.font.Font("fonts/Roboto-Bold.ttf", 28)
+    roboto_small = pg.font.Font("fonts/Roboto-Bold.ttf", 20)
+    roboto_middle = pg.font.Font("fonts/Roboto-Bold.ttf", 22)
 
     play_mode = PlayGameMode(screen, draw_list, main, item_images, debug, debug_map, debug_tile_images, tile_layer,
                              tile_images, suspect_layer, question_mark_images, raw_chunks, down_tick, flags_left,

@@ -103,7 +103,8 @@ class PlayGameMode(GameMode):
                 grid_pos_x = pos[0] // 32
                 grid_pos_y = pos[1] // 32
                 if 0 <= grid_pos_x < main.WIDTH and 0 <= grid_pos_y < main.HEIGHT:
-                    if suspect_layer[grid_pos_y][grid_pos_x] == 0 and flags_left > 0:
+                    if suspect_layer[grid_pos_y][grid_pos_x] == 0 and flags_left > 0 and \
+                            self.tile_layer[grid_pos_y][grid_pos_x] in [1, 2]:
                         suspect_layer[grid_pos_y][grid_pos_x] = 1
                         flags_left -= 1
                     elif suspect_layer[grid_pos_y][grid_pos_x] == 1:
