@@ -4,8 +4,6 @@ from game_mode import *
 from pygame_utils import *
 from settings import *
 
-# TODO: Add Timer
-# TODO: Add Flags/Mines
 # TODO: Fix debugging crash
 # TODO: Improve Graphics
 # TODO: Giving Option for size

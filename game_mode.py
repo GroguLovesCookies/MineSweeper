@@ -58,6 +58,11 @@ class PlayGameMode(GameMode):
         rect.bottomright = (SCREEN_WIDTH, SCREEN_HEIGHT)
         screen.blit(label, rect)
 
+        counter = self.font.render(str(self.flags_left) + "/" + str(main.MINE_NUM), 1, (255, 255, 255))
+        rect = counter.get_rect()
+        rect.bottomleft = (0, SCREEN_HEIGHT)
+        screen.blit(counter, rect)
+
         draw_list(screen, main.board, item_images, (0, 0), (32, 32))
         if debug:
             draw_list(screen, debug_map, debug_tile_images, (0, 0), (32, 32), [0])
