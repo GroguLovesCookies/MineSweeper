@@ -47,7 +47,7 @@ def play_game():
     clock = pg.time.Clock()
     flags_left = main.MINE_NUM
 
-    roboto_font = pg.font.Font("fonts/Roboto-Bold.ttf", 28)
+    roboto_font = pg.font.Font("fonts/Roboto-Bold.ttf", 26)
     roboto_small = pg.font.Font("fonts/Roboto-Bold.ttf", 20)
     roboto_middle = pg.font.Font("fonts/Roboto-Bold.ttf", 22)
 
