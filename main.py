@@ -4,7 +4,8 @@ import random
 # Constants
 WIDTH = 0
 HEIGHT = 0
-MINE_NUM = int(0.1 * int(WIDTH*HEIGHT)) + random.randint(-1, 1)
+PERCENTAGE = 10
+MINE_NUM = int(PERCENTAGE/100 * int(WIDTH*HEIGHT)) + random.randint(-PERCENTAGE//10, PERCENTAGE//10)
 OFFSETS = [(0, -1), (1, -1), (1, 0), (1, 1), (0, 1), (-1, 1), (-1, 0), (-1, -1)]
 
 

@@ -180,6 +180,34 @@ class ChooseSizeMode(GameMode):
     def update(self):
         self.screen.fill((100, 100, 100))
         for button in self.buttons:
-            item = button.update()
+            button.update()
+
+    def check_events(self, e):
+        for button in self.buttons:
+            item = button.check_events(e)
+            if item is not None:
+                return item
+
+
+class ChooseDifficultyMode(GameMode):
+    def __init__(self, screen, font):
+        self.screen = screen
+        self.button_img = pg.image.load("img/button.png")
+        self.buttons = []
+        self.origin_point = ((settings.SCREEN_WIDTH-224)//2, (settings.SCREEN_HEIGHT-64)//2)
+        self.difficulties = ["Easy", "Medium", "Hard"]
+        for x in range(3):
+            pos_x = self.origin_point[0] + x*(64+16)
+            pos_y = self.origin_point[1]
+            self.buttons.append(Button(self.screen, self.button_img, pos_x, pos_y, self.difficulties[x], font))
+
+    def update(self):
+        self.screen.fill((100, 100, 100))
+        for button in self.buttons:
+            button.update()
+
+    def check_events(self, e):
+        for button in self.buttons:
+            item = button.check_events(e)
             if item is not None:
                 return item

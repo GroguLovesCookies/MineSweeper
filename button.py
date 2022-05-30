@@ -25,20 +25,21 @@ class Button:
             text_rect = label.get_rect(center=self.center)
             self.screen.blit(label, text_rect)
         pos = pg.mouse.get_pos()
-        if pg.mouse.get_pressed()[0]:
+        if self.rect.collidepoint(pos):
+            self.cur_img = self.large_img
+            self.cur_coord = self.large_coord
+        else:
+            self.cur_img = self.img
+            self.cur_coord = self.coord
+        self.clicked = False
+
+    def check_events(self, e):
+        if e.type == pg.MOUSEBUTTONDOWN:
+            pos = pg.mouse.get_pos()
             if self.rect.collidepoint(pos):
                 if not self.clicked:
                     self.clicked = True
                     return self.text
             else:
                 self.clicked = False
-        else:
-            if self.rect.collidepoint(pos):
-                self.cur_img = self.large_img
-                self.cur_coord = self.large_coord
-            else:
-                self.cur_img = self.img
-                self.cur_coord = self.coord
-            self.clicked = False
-
 
